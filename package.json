@@ -1,6 +1,6 @@
 {
-  "name": "Reactjs",
-  "version": "0.0.0",
+  "name": "react-deploy",
+  "version": "0.1.0",
   "homepage": "http://Will-Wan.github.io/BigDayteOut",
   "scripts": {
     "dev": "vite",
