@@ -407,15 +407,7 @@ const baseTime = getForecastTime(0);
           <h2>
             {baseTime}:00 
           </h2>  
-          <img 
-            src={`http://openweathermap.org/img/wn/${TotalIcon}@2x.png`}
-            />  
-          <h2>
-              {getForecastDescription(0)}
-          </h2>
-          <h2>
-             {getForecastTemp(0)}
-          </h2>
+
         </div>
 
         <div className="DescriptionsSplitter" style={{marginTop:'10vh'}}>
