@@ -1,10 +1,13 @@
 {
   "name": "Reactjs",
   "version": "0.0.0",
+  "homepage": "http://Will-Wan.github.io/BigDayteOut",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "google-map-react": "^2.1.9",
