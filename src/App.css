@@ -1,0 +1,447 @@
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body {
+  font-size: 1.6vw;
+}
+.box {
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: relative;
+  border-radius: 45px;
+  height: 76vh;
+  width: 76vw;
+  margin-top: 12vh;
+  margin-left: 12vw;
+  margin-right: 12vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.box1Text {
+  align-items:center;
+  vertical-align: center;
+  text-align: center;
+  width: 24vw;
+
+  padding-top: 20vh;
+  padding-left: 10vh;
+  padding-right: 10vh;
+}
+
+.box2 {
+  margin-right: 0;
+  text-align: center;
+  margin-left: auto;
+  vertical-align: top;
+  background: rgba(243,247,255,1);
+  position: relative;
+  border-radius: 45px;
+  padding: 10vh;
+  height: auto;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 52vw;
+  color: rgba(128,128,128,1);
+  font-size: 3.0vw;
+  font-weight: Bold;
+  
+  overflow: hidden;
+}
+
+.entryBox {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background: white;
+  position: relative;
+  border-radius: 45px;
+  padding: 4vh;
+  height: 1vh;
+  width: 36vw;
+  left:50%;
+  margin-top: 3vh;
+  margin-left: -18vw;
+  margin-right: 46vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: rgba(128,128,128,1);
+  font-size: 1.8vw;
+}
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(74,128,245,1);
+  position: relative;
+  border-radius: 45px;
+  padding: 4vh;
+  height: 1vh;
+  width: 20vw;
+  left:50%;
+  margin-top: 3vh;
+  margin-left: -10vw;
+  margin-right: 46vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+
+  font-size: 1.6vw;
+  font-weight: Bold;
+}
+
+.forgotPass{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(243,247,255,1);
+  position: relative;
+ 
+  height: 4vh;
+  width: 20vw;
+  left:50%;
+  margin-top: 10px;
+  margin-left: -10vw;
+  margin-right: 46vw;
+  font-size: 1.2vw;
+  
+  overflow: hidden;
+  color: rgba(74,128,245,1);
+}
+
+.register{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(74,128,245,1);
+  border: 2px solid white;
+  
+  position: relative;
+  border-radius: 45px;
+  padding: 3vh;
+  height: 1vh;
+  width: 14vw;
+  left:50%;
+  margin-top: 4vh;
+  margin-left: -7vw;
+  margin-right: 46vw;
+  
+  overflow: hidden;
+  color: white;
+
+  font-size: 1.6vw;
+  font-weight: Bold;
+}
+
+.mapContainer{
+  position: absolute;
+  top: 0;
+  height: 90.5vh;
+  width: 100vw;
+}
+
+.belowMap{
+  display: flex;
+
+  height: 20vh;
+  width: 100vw;
+
+  position: absolute;
+  bottom: 0;
+
+  background: rgba(184, 187, 192, 0);
+}
+
+.mainMapPage{
+  position:absolute;
+  bottom: 0;
+  height: 11vh;
+  width: 100vw;
+  background-color: white;
+}
+
+.tabButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 10px;
+  padding: 3vh;
+  height: 1vh;
+  width: 10vw;
+  margin-top: 0.8vw;
+  margin-left: 0.75vw;
+  margin-right: 0.4vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+  font-size: 1.6vw;
+  font-weight: bold;
+}
+
+.tabLeft{
+  align-self: stretch;
+  width: 11.5vw;
+  height: 10.5vh;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  left: 0;
+  padding-left: 0vw;
+  padding-top: 0.1vw;
+  
+}
+
+.tabCentre{
+  align-self: stretch;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 10.5vh;
+  width: 11.5vw;
+  padding-top: 0.1vw;
+}
+
+.tabRight{
+  align-self: stretch;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 10.5vh;
+  width: 11.5vw;
+  right: 0;
+  padding-right: 0.4vw;
+  padding-top: 0.1vw;
+}
+
+.tabDescriptions {
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 9vh;
+  width: 70vw;
+  margin-top: 1vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.EventPreview {
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 9vh;
+  width: 26vw;
+  margin-top: 1vh;
+  margin-left: 72vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.DetailedDescriptions {
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 77vh;
+  width: 97vw;
+  margin-top: 12vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.DetailedDescriptionsHalfLeft {
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 77vh;
+  width: 48vw;
+  margin-top: 12vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.DetailedDescriptionsHalfRight {
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 77vh;
+  width: 48vw;
+  margin-top: 12vh;
+  margin-left: 50vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+main {
+  text-align: center;
+  vertical-align: center;
+}
+
+.DescriptionsSplitter {
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  height: 13vh;
+  width: 45vw;
+  margin-top: 1vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.WeatherImageContainer {
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 30vh;
+  width: 15vw;
+  margin-top: -30vh;
+  margin-left: -30vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.WeatherCurrentTempContainer {
+
+  justify-content: left;
+  align-items: top;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 30vh;
+  width: 30vw;
+  margin-top: -30vh;
+  margin-left: 17vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  
+  overflow: hidden;
+  color: white;
+  font-size: 7vw;
+}
+.WeatherCurrentContainer {
+
+  justify-content: left;
+  align-items: top;
+  position: relative;
+  display: flex;
+  
+  position: absolute;
+  border-radius: 10px;
+  height: 15vh;
+  width: 30vw;
+  margin-top: 14vh;
+  margin-left: 0vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  overflow: hidden;
+  color: white;
+  font-size: 7vw;
+}
+
+.WeatherCurrentContainerSmaller {
+
+  justify-content: left;
+  align-items: top;
+  position: relative;
+  display: flex;
+  
+  position: absolute;
+  border-radius: 10px;
+  height: 15vh;
+  width: 30vw;
+  margin-top: 15vh;
+  margin-left: 0vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  overflow: hidden;
+  color: white;
+  font-size: 4vw;
+}
+
+.WeatherExtraInfoContainer {
+
+  justify-content: left;
+  align-items: top;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 13vh;
+  width: 46vw;
+  margin-top: 16vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 5vw;
+}
