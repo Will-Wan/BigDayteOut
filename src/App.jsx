@@ -389,7 +389,7 @@ function WeatherPage() {
           .then(data => setWeatherDescription(((data.weather[0].description))));
   // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
-/*
+
   const [SunRiseTime, setSunRiseTime] = useState(null);
   useEffect(() => {
       // GET request using fetch inside useEffect React hook
@@ -398,7 +398,16 @@ function WeatherPage() {
           .then(data => setSunRiseTime(((data.sys.sunrise))));
   // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
+const date = new Date(SunRiseTime * 1000);
+// Hours part from the timestamp
+const hours = date.getHours();
+// Minutes part from the timestamp
+const minutes = "0" + date.getMinutes();
+// Seconds part from the timestamp
+const seconds = "0" + date.getSeconds();
 
+// Will display time in 10:30:23 format
+const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
   const [SunSetTime, setSunSetTime] = useState(null);
   useEffect(() => {
@@ -408,7 +417,20 @@ function WeatherPage() {
           .then(data => setSunSetTime(((data.sys.sunset))));
   // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
-*/
+
+const date1 = new Date(SunSetTime * 1000);
+// Hours part from the timestamp
+const hours1 = date1.getHours();
+// Minutes part from the timestamp
+const minutes1 = "0" + date1.getMinutes();
+// Seconds part from the timestamp
+const seconds1 = "0" + date1.getSeconds();
+
+// Will display time in 10:30:23 format
+const formattedTime1 = hours1 + ':' + minutes1.substr(-2) + ':' + seconds1.substr(-2);
+
+
+
 /*
   const [TheCountry, setTheCountry] = useState(null);
   useEffect(() => {
@@ -428,32 +450,123 @@ function WeatherPage() {
   }, []);
 */
 
-const [ForecastFind, setForecastFind] = useState(null);
+
+const [weather0, setweather0] = useState(null);
   useEffect(() => {
-      var choose = 0;
       fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
           .then(response => response.json())
-          .then(data => setForecastFind(data.hourly));
+          .then(data => setweather0(data.hourly[0].weather[0].description));
+  }, []);
+const [icon0, seticon0] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => seticon0(data.hourly[0].weather[0].icon));
+  }, []);
+const [temp0, settemp0] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => settemp0((((data.hourly[0].temp) - 273.15).toFixed(2))));
+          
+  }, []);
+const [pop0, setpop0] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => setpop0(data.hourly[0].pop));
   }, []);
 
-const getForecastTime = (choose) => {
-    var unix_time_change = ((ForecastFind || {})[choose] || {}).dt || null;
-    var date = new Date(unix_time_change * 1000);
-    return date.getHours();
 
-}
-//gets the icon corresponding to the weather thing
-const getForecastIcon = (choose) => {
-    return ((ForecastFind || {})[choose] || {}).weather[0].icon || null;
-}
+const [weather1, setweather1] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => setweather1(data.hourly[1].weather[0].description));
+  }, []);
+const [icon1, seticon1] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => seticon1(data.hourly[1].weather[0].icon));
+  }, []);
+const [temp1, settemp1] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => settemp1((((data.hourly[1].temp) - 273.15).toFixed(2))));
+  }, []);
+const [pop1, setpop1] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => setpop1(data.hourly[1].pop));
+  }, []);
 
-const getForecastDescription = (choose) => {
-    return ((ForecastFind || {})[choose] || {}).weather[0].description || null;
-}
 
-const getForecastTemp = (choose) => {
-    return ((ForecastFind || {})[choose] || {}).weather[0].temp || null;
-}
+const [weather2, setweather2] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => setweather2(data.hourly[2].weather[0].description));
+  }, []);
+const [icon2, seticon2] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => seticon2(data.hourly[2].weather[0].icon));
+  }, []);
+const [temp2, settemp2] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => settemp2((((data.hourly[2].temp) - 273.15).toFixed(2))));
+  }, []);
+const [pop2, setpop2] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => setpop2(data.hourly[2].pop));
+  }, []);
+
+
+const [weather3, setweather3] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => setweather3(data.hourly[3].weather[0].description));
+  }, []);
+const [icon3, seticon3] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => seticon3(data.hourly[3].weather[0].icon));
+  }, []);
+const [temp3, settemp3] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => settemp3((((data.hourly[3].temp) - 273.15).toFixed(2))));
+  }, []);
+const [pop3, setpop3] = useState(null);
+  useEffect(() => {
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=22&lon=151&exclude=current,minutely,daily&APPID=bb53d6f630ec369b97d9bf3e5bfc8621')
+          .then(response => response.json())
+          .then(data => setpop3(data.hourly[3].pop));
+  }, []);
+
+
+const d = new Date();
+const dt0 = d.getHours();
+const dt11 = new Date(d.setHours(d.getHours() + 1));
+const dt1 = dt11.getHours();
+const dt22 = new Date(d.setHours(d.getHours() + 1));
+const dt2 = dt22.getHours();
+const dt33 = new Date(d.setHours(d.getHours() + 1));
+const dt3 = dt33.getHours();
+
+
+
 
 
 
@@ -485,61 +598,104 @@ const getForecastTemp = (choose) => {
         </div>
         <div className="DescriptionsSplitter" style={{marginTop:'-20vh'}}>
           <h2>
-            {getForecastTime(0)}:00
+            {dt0}:00
           </h2>
           
 
           <img 
-            src={`http://openweathermap.org/img/wn/${TotalIcon}@2x.png`}
+            src={`http://openweathermap.org/img/wn/${icon0}@2x.png`}
             />  
           <h2>
-            Cloudy 15.2°C
-          </h2>          
-          
-
+            {weather0}&nbsp; {temp0}°C
+          </h2>
+          &nbsp;
+          &nbsp;    
+          &nbsp; 
+        <img 
+          src={`../images/raindrop.png`} style={{width: "2.5vw"}}
+          />   
+        <h2>
+           {pop0}%
+        </h2>     
         </div>
+
+
+
+
 
         <div className="DescriptionsSplitter" style={{marginTop:'10vh'}}>
           <h2>
-            {getForecastTime(1)}:00
+            {dt1}:00
           </h2>
           <img 
-            src={`http://openweathermap.org/img/wn/02n@2x.png`}
+            src={`http://openweathermap.org/img/wn/${icon1}@2x.png`}
             />  
 
           <h2>
-            Cloudy 14.6°C
+            {weather1}&nbsp; {temp1}°C
           </h2>  
-
+          &nbsp;
+          &nbsp;
+          &nbsp;
+        <img 
+          src={`../images/raindrop.png`} style={{width: "2.5vw"}}
+          />   
+        <h2>
+           {pop1}%
+        </h2>
         </div>
+
+
+
+
 
         <div className="DescriptionsSplitter" style={{marginTop:'40vh'}}>
           <h2>
-            {getForecastTime(2)}:00
+            {dt2}:00
           </h2>
 
           <img 
-            src={`http://openweathermap.org/img/wn/09n@2x.png`}
+            src={`http://openweathermap.org/img/wn/${icon2}@2x.png`}
             />  
           <h2>
-            Light Rain 17.3°C
+            {weather2}&nbsp; {temp2}°C
           </h2>  
-
+          &nbsp;
+          &nbsp;
+          &nbsp;
+        <img 
+          src={`../images/raindrop.png`} style={{width: "2.5vw"}}
+          />   
+        <h2>
+           {pop2}%
+        </h2>
         </div>
+
+
+
+
 
         <div className="DescriptionsSplitter" style={{marginTop:'70vh'}}>
           <h2>
-            {getForecastTime(3)}:00
+            {dt3}:00
           </h2>
 
           <img 
-            src={`http://openweathermap.org/img/wn/01n@2x.png`}
+            src={`http://openweathermap.org/img/wn/${icon3}@2x.png`}
             />  
 
           <h2>
-            Clear Skies 14.7°C
-          </h2>  
-
+            {weather3}&nbsp; {temp3}°C
+          </h2> 
+          &nbsp;
+          &nbsp;
+          &nbsp; 
+        <img 
+          src={`../images/raindrop.png`} style={{width: "2.5vw"}}
+          />   
+        <h2>
+           {pop3}%
+        </h2>
         </div>
 
       </div>
@@ -566,11 +722,11 @@ const getForecastTemp = (choose) => {
       </div>
 
       <div className="WeatherExtraInfoContainer" style={{marginTop:'45vh'}}>
-        Sunrise: 6:17
+        Sunrise: {formattedTime}
       </div>
 
       <div className="WeatherExtraInfoContainer" style={{marginTop:'74vh'}}>
-        Sunset: 17:32
+        Sunset: {formattedTime1}
       </div>
       </div>
 
