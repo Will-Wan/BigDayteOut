@@ -1,6 +1,10 @@
+
 * {
   box-sizing: border-box;
   text-decoration: none;
+}
+input:focus {
+    outline:none;
 }
 body {
   font-size: 1.6vw;
@@ -140,7 +144,7 @@ body {
 .mapContainer{
   position: absolute;
   top: 0;
-  height: 90.5vh;
+  height: 89vh;
   width: 100vw;
 }
 
@@ -219,7 +223,6 @@ body {
 
   justify-content: center;
   align-items: center;
-  position: relative;
   display: flex;
   background: rgba(74,128,245,1);
   position: absolute;
@@ -240,7 +243,6 @@ body {
 
   justify-content: center;
   align-items: center;
-  position: relative;
   display: flex;
   background: rgba(74,128,245,1);
   position: absolute;
@@ -261,7 +263,6 @@ body {
 
   justify-content: center;
   align-items: center;
-  position: relative;
   display: flex;
   background: rgba(74,128,245,1);
   position: absolute;
@@ -282,7 +283,6 @@ body {
 
   justify-content: center;
   align-items: center;
-  position: relative;
   display: flex;
   background: rgba(74,128,245,1);
   position: absolute;
@@ -303,9 +303,8 @@ body {
 
   justify-content: center;
   align-items: center;
-  position: relative;
   display: flex;
-  background: rgba(74,128,245,1);
+  background: rgba(243,247,255,1);
   position: absolute;
   border-radius: 10px;
   height: 77vh;
@@ -326,11 +325,12 @@ main {
 }
 
 .DescriptionsSplitter {
-  justify-content: center;
+  justify-content: left;
+  padding-left: 50px;
   align-items: center;
-  position: relative;
   display: flex;
   background: rgba(74,128,245,1);
+  border-radius: 10px;
   position: absolute;
   height: 13vh;
   width: 45vw;
@@ -348,11 +348,10 @@ main {
 
   justify-content: center;
   align-items: center;
-  position: relative;
   display: flex;
   background: rgba(74,128,245,1);
   position: absolute;
-  border-radius: 10px;
+  border-radius: 300px;
   height: 30vh;
   width: 15vw;
   margin-top: -30vh;
@@ -369,7 +368,6 @@ main {
 
   justify-content: left;
   align-items: top;
-  position: relative;
   display: flex;
   background: rgba(74,128,245,1);
   position: absolute;
@@ -389,7 +387,6 @@ main {
 
   justify-content: left;
   align-items: top;
-  position: relative;
   display: flex;
   
   position: absolute;
@@ -409,10 +406,8 @@ main {
 
   justify-content: left;
   align-items: top;
-  position: relative;
-  display: flex;
-  
   position: absolute;
+  display: flex;
   border-radius: 10px;
   height: 15vh;
   width: 30vw;
@@ -429,10 +424,9 @@ main {
 
   justify-content: left;
   align-items: top;
-  position: relative;
+  position: absolute;
   display: flex;
   background: rgba(74,128,245,1);
-  position: absolute;
   border-radius: 10px;
   height: 13vh;
   width: 46vw;
@@ -443,5 +437,150 @@ main {
   box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
   overflow: hidden;
   color: white;
-  font-size: 5vw;
+  font-size: 4.5vw;
+}
+
+.TimeStartCoverTEMP {
+
+  justify-content: left;
+  align-items: top;
+  display: flex;
+  background: rgba(249,249,250,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 7vh;
+  width: 8vw;
+  margin-top: -25vh;
+  margin-left: -38vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  overflow: hidden;
+  color: black;
+  font-size: 1vw;
+}
+
+
+.TimeStartCoverTEMP2 {
+
+  justify-content: left;
+  align-items: top;
+  display: flex;
+  background: rgba(249,249,250,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 7vh;
+  width: 8vw;
+  margin-top: 33vh;
+  margin-left: -38vw;
+  margin-right: 1vw;
+ 
+  overflow: hidden;
+  color: black;
+  font-size: 1vw;
+}
+
+.eventContainer {
+  justify-content: start;
+  align-items: top;
+  flex-direction: column;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 77vh;
+  width: 97vw;
+  padding: 1%;
+  margin-top: 12vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: scroll;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.eventEntry {
+  justify-content: space-between;
+  align-content: center;
+  align-items: left;
+  position: relative;
+  display: flex;
+  margin-bottom: 1%;
+  background: rgba(243,247,255,1);
+  border-radius: 10px;
+  vertical-align: middle;
+  height: 12vh;
+  width: 95vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: black;
+  font-size: 1.6vw;
+}
+
+.eventText {
+  position: relative;
+  text-align: left;
+  height: 12vh;
+  width: 95vw;
+  overflow: hidden;
+  color: black;
+  font-size: 1.6vw;
+  padding: 2%;
+}
+
+.eventButton {
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+  display: flex;
+  background: rgba(74,128,245,1);
+  border-radius: 10px;
+  height: 9vh;
+  width: 9vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 6vh;
+
+  margin-right: 0.5%;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.settingDescription {
+
+  justify-content: start;
+  vertical-align: top;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 77vh;
+  width: 97vw;
+  margin-top: 12vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.settingEntry {
+  position: relative;
+  flex-direction: row;
+  text-align: left;
+  height: 12vh;
+  width: 95vw;
+  overflow: hidden;
+  color: white;
+  font-size: 1.6vw;
+  padding: 2%;
 }
