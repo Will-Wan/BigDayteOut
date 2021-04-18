@@ -16,6 +16,7 @@
   align-items: center;
   width: 180px;
   color: var(--main-blue);
+  transform: translate(-50%, -50%);
 }
 
 .pin-icon {
@@ -38,6 +39,7 @@
 
   .pin {
     width: 15vw;
+    transform: translate(-50%, -50%);
   }
 
   .pin-icon {
