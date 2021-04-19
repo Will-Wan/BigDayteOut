@@ -605,3 +605,11 @@ main {
   font-size: 1.6vw;
   padding: 2%;
 }
+.dropbtn {
+  font-size: 1.6vw;
+  background-color:rgba(74,128,245,1);
+  color: white;
+  font-weight-bold: 33px;
+
+}
+

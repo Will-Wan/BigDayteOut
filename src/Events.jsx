@@ -3,11 +3,32 @@ import './map.css'
 import React, { useState, useEffect } from 'react';
 
 export function EventsPage() {
-  const [eventOne, setEventOne] = useState("-");
-  const [eventTwo, setEventTwo] = useState("+");
-  const [eventThree, setEventThree] = useState("+");
-  const [eventFour, setEventFour] = useState("+");
-  const [eventFive, setEventFive] = useState("+");
+  useEffect(() => {
+      fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8943,151.2330&radius=3000&type=restaurant&keyword=attractions&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk&maxprice=400')
+          .then(response => response.json())
+          .then(data => 
+          {
+            seticon_h0(data.hourly[0].weather[0].icon)
+            setweather_h0(data.hourly[0].weather[0].description)
+            settemp_h0((((data.hourly[0].temp) - 273.15).toFixed(2)))
+            setpop_h0(data.hourly[0].pop)
+
+            seticon_h1(data.hourly[1].weather[0].icon)
+            setweather_h1(data.hourly[1].weather[0].description)
+            settemp_h1((((data.hourly[1].temp) - 273.15).toFixed(2)))
+            setpop_h1(data.hourly[1].pop)
+
+            seticon_h2(data.hourly[2].weather[0].icon)
+            setweather_h2(data.hourly[2].weather[0].description)
+            settemp_h2((((data.hourly[2].temp) - 273.15).toFixed(2)))
+            setpop_h2(data.hourly[2].pop)
+
+            seticon_h3(data.hourly[3].weather[0].icon)
+            setweather_h3(data.hourly[3].weather[0].description)
+            settemp_h3((((data.hourly[3].temp) - 273.15).toFixed(2)))
+            setpop_h3(data.hourly[3].pop)
+          });
+  }, []);
 
 
 
@@ -101,4 +122,26 @@ export function EventsPage() {
       */} 
     </main>
   );
+}
+
+function getEventsList(lat, lng, radius, maxprice) {
+//google places api
+
+  const API_KEY = "AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk";
+  const KEYWORD = "attractions";
+  const BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+
+  apiUrl = BASE_URL + "key=" + API_KEY + "&radius=" + radius + "&location=" + lat + "," + lng + "&keyword=" + KEYWORD + "&maxprice=" + maxprice;
+
+  const [unfilteredEventsList, setUnfilteredEventsList] = useState(null);
+  useEffect(() => {
+      // GET request using fetch inside useEffect React hook
+      fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => console.log(data));
+  // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
+
+  
+// https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=300&type=restaurant&keyword=cruise&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk
 }

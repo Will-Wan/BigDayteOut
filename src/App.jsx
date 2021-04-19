@@ -41,26 +41,5 @@ function PassThrough () {
   );
 }
 
-function getEventsList(lat, lng, radius, maxprice) {
-//google places api
-
-  const API_KEY = "AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk";
-  const KEYWORD = "attractions";
-  const BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-
-  apiUrl = BASE_URL + "key=" + API_KEY + "&radius=" + radius + "&location" + lat + "," + lng + "&keyword=" + KEYWORD + "&maxprice=" + maxprice;
-
-  const [unfilteredEventsList, setUnfilteredEventsList] = useState(null);
-  useEffect(() => {
-      // GET request using fetch inside useEffect React hook
-      fetch(apiUrl)
-          .then(response => response.json())
-          .then(data => console.log(data));
-  // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, []);
-
-  
-}
-
 
 export default PassThrough;

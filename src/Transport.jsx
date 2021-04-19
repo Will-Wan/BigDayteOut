@@ -10,13 +10,17 @@ export function TransportPage() {
   return (
     <main>
       <div className="tabDescriptions">
-      <h2>
-      BUS 399
-      &nbsp;
-      &nbsp;
-      &nbsp;
-        {current.toLocaleTimeString()} --> 20min --> {twentyMinutesLater.toLocaleTimeString()}
-      </h2>
+
+      <div id="floating-panel" >
+      <b>You will be </b>
+      <select id="transitOption" class = "dropbtn">
+        <option value = "DRIVING">driving</option>
+        <option value = "BICYCLING">cycling</option>
+        <option value = "WALKING">Walking</option>
+        <option value = "TRANSIT">Transit</option>
+      </select>
+      <b> to this place </b>
+    </div>
         
       </div>
 
@@ -28,23 +32,14 @@ export function TransportPage() {
 
       <div className="DetailedDescriptionsHalfLeft"
           style={{height: "40vh"}}>
+         <select id="start">
+        <option value = "DRIVING">Driving</option>
+        <option value = "DRIVING">Bicycle</option>
+      </select>
 
 
-        <div className="TimeStartCoverTEMP">
-          <h2>
-             {current.toLocaleTimeString()}
-          </h2>
-        </div>        
 
-        <div className="TimeStartCoverTEMP2" style={{margintop: "30vh"}}>
-          <h2>
-              {twentyMinutesLater.toLocaleTimeString()}
-          </h2>
-        </div>   
 
-        <img 
-          src="../images/DirectionPlaceholder.PNG" style={{width: "100vw"}}
-          />   
       </div>
 
       <div className="DetailedDescriptionsHalfRight" style={{height: "40vh"}}>
