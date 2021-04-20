@@ -4,6 +4,30 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
 import ReactWeather, { useOpenWeather } from 'react-open-weather';
 
+function WeatherCell(hour, icon, weather, temp, pop, top) {
+  return (<div className="DescriptionsSplitter" style={{marginTop: top}}>
+            <h2>
+              {hour % 24}:00
+            </h2>
+
+            <img 
+              src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+              />  
+            <h2>
+              {weather}&nbsp; {temp}°C
+            </h2>  
+            &nbsp;
+            &nbsp;
+            &nbsp;
+          <img 
+            src={`../images/raindrop.png`} style={{width: "2.5vw"}}
+            />   
+          <h2>
+            {pop}%
+          </h2>
+          </div>);
+}
+
 
 export function WeatherPage() {
 //WEATHER API OPEN WEATHER
@@ -90,163 +114,70 @@ const curHour = new Date().getHours();
   return (
     <main>
       <div className="tabDescriptions">
-      <h2>
-      Feels Like: {setTotalIcon} {totalTemp} °C
-        - {WeatherDescription}    
-      </h2>
-        <img 
-          src={`http://openweathermap.org/img/wn/${TotalIcon}@2x.png`}
-          />   
+        <h2>
+        Feels Like: {setTotalIcon} {totalTemp} °C
+          - {WeatherDescription}    
+        </h2>
+          <img 
+            src={`http://openweathermap.org/img/wn/${TotalIcon}@2x.png`}
+            />   
 
-      </div>
-
-      <div className="EventPreview">
-        <h3>
-          Sydney Tower Eye 10min
-        </h3>
-      </div>
-
-      <div className="DetailedDescriptionsHalfRight">
-        <div className="DescriptionsSplitter" style={{marginBottom:'63vh', justifyContent: "center", paddingLeft: "0px"}}>
-          <h1>
-            Hourly Forecast
-          </h1>
         </div>
-        <div className="DescriptionsSplitter" style={{marginTop:'-20vh'}}>
-          <h2>
-            {(curHour + 1) % 24}:00
-          </h2>
+
+        <div className="EventPreview">
+          <h3>
+            Sydney Tower Eye 10min
+          </h3>
+        </div>
+
+        <div className="DetailedDescriptionsHalfRight">
           
 
-          <img 
-            src={`http://openweathermap.org/img/wn/${icon_h0}@2x.png`}
-            />  
-          <h2>
-            {weather_h0}&nbsp; {temp_h0}°C
-          </h2>
-          &nbsp;
-          &nbsp;    
-          &nbsp; 
-        <img 
-          src={`../images/raindrop.png`} style={{width: "2.5vw"}}
-          />   
-        <h2>
-           {pop_h0}%
-        </h2>     
+          <div className="DescriptionsSplitter" style={{marginBottom:'63vh', justifyContent: "center", paddingLeft: "0px"}}>
+            <h1>
+              Hourly Forecast
+            </h1>
+          </div>
+
+          {WeatherCell(curHour+1, icon_h0, weather_h0, temp_h0, pop_h0, '-20vh')}
+
+          {WeatherCell(curHour+2, icon_h1, weather_h1, temp_h1, pop_h1, '10vh')}
+
+          {WeatherCell(curHour+3, icon_h2, weather_h2, temp_h2, pop_h2, '40vh')}
+
+          {WeatherCell(curHour+4, icon_h3, weather_h3, temp_h3, pop_h3, '70vh')}
+
         </div>
 
+        <div className="DetailedDescriptionsHalfLeft">
+          <div className="WeatherImageContainer">
+            <img 
+              src={`http://openweathermap.org/img/wn/${TotalIcon}@4x.png`} style={{width: "100vw"}}
+              />  
+          </div>
 
-
-
-
-        <div className="DescriptionsSplitter" style={{marginTop:'10vh'}}>
-          <h2>
-            {(curHour + 2) % 24}:00
-          </h2>
-          <img 
-            src={`http://openweathermap.org/img/wn/${icon_h1}@2x.png`}
-            />  
-
-          <h2>
-            {weather_h1}&nbsp; {temp_h1}°C
-          </h2>  
-          &nbsp;
-          &nbsp;
-          &nbsp;
-        <img 
-          src={`../images/raindrop.png`} style={{width: "2.5vw"}}
-          />   
-        <h2>
-           {pop_h1}%
-        </h2>
+        <div className="WeatherCurrentTempContainer">
+          {totalTemp} °C
+          <div className="WeatherCurrentContainerSmaller">
+            {WeatherDescription}
+            
+          </div>        
         </div>
 
-
-
-
-
-        <div className="DescriptionsSplitter" style={{marginTop:'40vh'}}>
-          <h2>
-            {(curHour + 3) % 24}:00
-          </h2>
-
-          <img 
-            src={`http://openweathermap.org/img/wn/${icon_h2}@2x.png`}
-            />  
-          <h2>
-            {weather_h2}&nbsp; {temp_h2}°C
-          </h2>  
-          &nbsp;
-          &nbsp;
-          &nbsp;
-        <img 
-          src={`../images/raindrop.png`} style={{width: "2.5vw"}}
-          />   
-        <h2>
-           {pop_h2}%
-        </h2>
-        </div>
-
-
-
-
-
-        <div className="DescriptionsSplitter" style={{marginTop:'70vh'}}>
-          <h2>
-            {(curHour + 4) % 24}:00
-          </h2>
-
-          <img 
-            src={`http://openweathermap.org/img/wn/${icon_h3}@2x.png`}
-            />  
-
-          <h2>
-            {weather_h3}&nbsp; {temp_h3}°C
-          </h2> 
-          &nbsp;
-          &nbsp;
-          &nbsp; 
-        <img 
-          src={`../images/raindrop.png`} style={{width: "2.5vw"}}
-          />   
-        <h2>
-           {pop_h3}%
-        </h2>
-        </div>
-
-      </div>
-
-      <div className="DetailedDescriptionsHalfLeft">
-        <div className="WeatherImageContainer">
-          <img 
-            src={`http://openweathermap.org/img/wn/${TotalIcon}@4x.png`} style={{width: "100vw"}}
-            />  
-        </div>
-
-      <div className="WeatherCurrentTempContainer">
-        {totalTemp} °C
-        <div className="WeatherCurrentContainerSmaller">
-          {WeatherDescription}
+        <div className="WeatherExtraInfoContainer">
           
-        </div>        
-      </div>
+          Sydney, Australia
+          
+        </div>
 
-      <div className="WeatherExtraInfoContainer">
-        
-        Sydney, Australia
-        
-      </div>
+        <div className="WeatherExtraInfoContainer" style={{marginTop:'45vh'}}>
+          Sunrise: {fmtSunrise}
+        </div>
 
-      <div className="WeatherExtraInfoContainer" style={{marginTop:'45vh'}}>
-        Sunrise: {fmtSunrise}
+        <div className="WeatherExtraInfoContainer" style={{marginTop:'74vh'}}>
+          Sunset: {fmtSunset}
+        </div>
       </div>
-
-      <div className="WeatherExtraInfoContainer" style={{marginTop:'74vh'}}>
-        Sunset: {fmtSunset}
-      </div>
-      </div>
-
-
     </main>
   );
 

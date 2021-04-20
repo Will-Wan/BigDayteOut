@@ -3,38 +3,20 @@ import './map.css'
 import React, { useState, useEffect } from 'react';
 
 export function EventsPage() {
-  useEffect(() => {
-      fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8943,151.2330&radius=3000&type=restaurant&keyword=attractions&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk&maxprice=400')
-          .then(response => response.json())
-          .then(data => 
-          {
-            seticon_h0(data.hourly[0].weather[0].icon)
-            setweather_h0(data.hourly[0].weather[0].description)
-            settemp_h0((((data.hourly[0].temp) - 273.15).toFixed(2)))
-            setpop_h0(data.hourly[0].pop)
+  
+  var EventsList = getEventsList(-33.8943, 151.2330, 1000, 1000);
+  var business1 = EventsList[0]["name"];
 
-            seticon_h1(data.hourly[1].weather[0].icon)
-            setweather_h1(data.hourly[1].weather[0].description)
-            settemp_h1((((data.hourly[1].temp) - 273.15).toFixed(2)))
-            setpop_h1(data.hourly[1].pop)
-
-            seticon_h2(data.hourly[2].weather[0].icon)
-            setweather_h2(data.hourly[2].weather[0].description)
-            settemp_h2((((data.hourly[2].temp) - 273.15).toFixed(2)))
-            setpop_h2(data.hourly[2].pop)
-
-            seticon_h3(data.hourly[3].weather[0].icon)
-            setweather_h3(data.hourly[3].weather[0].description)
-            settemp_h3((((data.hourly[3].temp) - 273.15).toFixed(2)))
-            setpop_h3(data.hourly[3].pop)
-          });
-  }, []);
-
-
-
-
-
-
+  // const [business1, setbusiness1] = useState(null);
+  // useEffect(() => {
+  //     fetch('https://murmuring-mesa-57812.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8943,151.2330&radius=1000&type=restaurant&keyword=attractions&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk&maxprice=1000')
+  //         .then(response => response.json())
+  //         .then(data => 
+  //         {
+  //           setbusiness1(data.results[0].geometry.location.lat)
+  //           console.log("data", data.results)
+  //         });
+  // }, []);
 
   return (
     <main>
@@ -50,98 +32,60 @@ export function EventsPage() {
 
       <div className="DetailedDescriptionsHalfLeft">
         agenda planner will be here 
+        {business1} asfasfa
 
       </div>
       <div className="DetailedDescriptionsHalfRightBlue">
         Put the events generated in here
       </div>
-
-{/* 
-      <div className="eventContainer">
-
-
-
-
-      
-        <div className="eventEntry">
-          <div className="eventText">
-            10min Sydney Tower Eye - Sydney Tower Eye is the tallest building in Sydney. It has a 360-degree view of the city.
-          </div>
-          <div className="eventButton" onClick={() => {
-            setEventOne(eventOne == "+" ? "-" : "+");
-          }}>
-          {eventOne}
-          </div>
-        </div>
-
-        <div className="eventEntry">
-          <div className="eventText">
-            52min Sydney Opera House - The Sydney Opera House is a multi-venue performing arts centre at Sydney Harbour.
-          </div>
-          <div className="eventButton" onClick={() => {
-            setEventTwo(eventTwo == "+" ? "-" : "+");
-          }}>
-          {eventTwo}
-          </div>
-        </div>
-        
-        <div className="eventEntry">
-          <div className="eventText">
-            1hr 13min Paddy's Market - Paddy's Market have a wide variety of stalls; food, fashion, gifts and gadgets!
-          </div>
-          <div className="eventButton" onClick={() => {
-            setEventThree(eventThree == "+" ? "-" : "+");
-          }}>
-          {eventThree}
-          </div>
-        </div>
-        
-        <div className="eventEntry">
-          <div className="eventText">
-            1hr 43min Royal Botanic Garden - The Royal Botanic Garden, Sydney is a heritage-listed major 30-hectare garden.
-          </div>
-          <div className="eventButton" onClick={() => {
-            setEventFour(eventFour == "+" ? "-" : "+");
-          }}>
-          {eventFour}
-          </div>
-        </div>
-
-
-        <div className="eventEntry">
-          <div className="eventText">
-            1hr 53min Bondi Beach - One of Australia's most iconic beaches. Big waves and busy street stalls draw visitors year round!
-          </div>
-          <div className="eventButton" onClick={() => {
-            setEventFive(eventFive == "+" ? "-" : "+");
-          }}>
-          {eventFive}
-          </div>
-        </div>
-      </div>
-      */} 
     </main>
   );
 }
+
+// returns list of events
+// events stored as dicts in format:
+// { "lat": 0, "lng" : 0, "icon": gstatic.xyz, "name": Maccas, "price_level"= 1}
+
+
 
 function getEventsList(lat, lng, radius, maxprice) {
 //google places api
 
   const API_KEY = "AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk";
   const KEYWORD = "attractions";
-  const BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+  const BASE_URL = "https://murmuring-mesa-57812.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
 
-  apiUrl = BASE_URL + "key=" + API_KEY + "&radius=" + radius + "&location=" + lat + "," + lng + "&keyword=" + KEYWORD + "&maxprice=" + maxprice;
+  var apiUrl = BASE_URL + "key=" + API_KEY + "&radius=" + radius + "&location=" + lat + "," + lng + "&keyword=" + KEYWORD + "&maxprice=" + maxprice;
+  //console.log("XXXXXXXXX", apiUrl);
 
   const [unfilteredEventsList, setUnfilteredEventsList] = useState(null);
   useEffect(() => {
       // GET request using fetch inside useEffect React hook
-      fetch(apiUrl)
+      fetch("https://murmuring-mesa-57812.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8943,151.2330&radius=1000&type=restaurant&keyword=attractions&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk&maxprice=1000")
           .then(response => response.json())
-          .then(data => console.log(data));
+          .then(data => 
+            setUnfilteredEventsList(data.results)
+          });
   // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
 
+  var filteredEventsList = [];
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA", unfilteredEventsList);
+
+  for (var i = 0; i < unfilteredEventsList.length; i++) {
+      var d = {};
+      d["name"] = unfilteredEventsList[i].name;
+      console.log(d["name"]);
+      d["icon"] = unfilteredEventsList[i].icon;
+      d["price_level"] = unfilteredEventsList[i].price_level;
+      d["lat"] = unfilteredEventsList[i].location.geometry.lat;
+      d["lng"] = unfilteredEventsList[i].location.geometry.lng;
+
+      filteredEventsList.push(d);
+  }
+
+  return filteredEventsList;
   
 // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=300&type=restaurant&keyword=cruise&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk
 }
+

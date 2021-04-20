@@ -1,6 +1,6 @@
 import './App.css';
 import './map.css'
-import GoogleMapReact from 'google-map-react';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
 
@@ -30,6 +30,20 @@ function GetStyleForID(id, gid) {
 
   return unselectedColour;
 }
+
+const MapComponent = withScriptjs(withGoogleMap((props) =>
+  <GoogleMap
+    defaultZoom={defaultMapProps.zoom}
+    defaultCenter={defaultMapProps.center}
+    zoomControl={defaultMapProps.zoomControl}
+
+    disableDefaultUI={true}
+    mapTypeControl={true}
+    defaultOptions={{disableDefaultUI: true, mapTypeControl: true}}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -33.8943, lng: 151.2330 }} />}
+  </GoogleMap>
+))
 
 export function Map() {
   const location = useLocation(); 
@@ -68,53 +82,13 @@ export function Map() {
   return (
     <Router>
       <div className="mapContainer" >
-        <GoogleMapReact
-            bootstrapURLKeys={{ key: "AIzaSyAKAb78UDIOoadxVvXW9oE7RNNAnJS8Du4" }}
-            defaultCenter={defaultMapProps.center}
-            defaultZoom={defaultMapProps.zoom}
-            zoomControl={defaultMapProps.zoomControl}
-           >
-        
-        <LocationPin
-          lat={-33.9173}
-          lng={151.2313}
-          text={"UNSW"}
-        />
-
-
-        <LocationPin
-          lat={-33.870453}
-          lng={151.208755}
-          text={"Sydney Tower Eye"}
-        />
-
-        <LocationPin
-          lat={-33.856159}
-          lng={151.215256}
-          text={"Sydney Opera House"}
-        />
-
-        <LocationPin
-          lat={-33.8800}
-          lng={151.2036}
-          text={"Paddy's Market"}
-        />
-
-        <LocationPin
-          lat={-33.8642}
-          lng={151.2166}
-          text={"Royal Botanic Garden"}
-        />
-
-        <LocationPin
-          lat={-33.8915}
-          lng={151.2767}
-          text={"Bondi Beach"}
-        />
-
-
-      </GoogleMapReact>
-
+        <MapComponent
+  isMarkerShown
+  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKAb78UDIOoadxVvXW9oE7RNNAnJS8Du4&v=3.exp&libraries=geometry,drawing,places"
+  loadingElement={<div style={{ height: `100%`, width: `100vw`}} />}
+  containerElement={<div style={{ height: `89vh`, width: `100vw` }} />}
+  mapElement={<div style={{ height: `89vh`, width: `100vw` }} />}
+  />
       </div>
       <div className="belowMap">
         <Link to="/map/weather" onClick={() => {setPageID(0)}}>
