@@ -25,6 +25,7 @@
     "google-map-react": "^2.1.9",
     "googleapis": "^71.0.0",
     "html-react-parser": "^1.2.6",
+    "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "react": "^17.0.0",
     "react-agenda": "0.0.8",
@@ -40,6 +41,7 @@
     "react-native-weekly-calendar": "^0.2.0",
     "react-open-weather": "^1.1.3",
     "react-router-dom": "^5.2.0",
+    "react-select": "^4.3.0",
     "recompose": "^0.30.0",
     "scheduler-react": "^2.0.20",
     "vite-plugin-node": "0.0.7"

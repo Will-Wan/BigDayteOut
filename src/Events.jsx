@@ -1,91 +1,163 @@
 import './App.css';
 import './map.css'
 import React, { useState, useEffect } from 'react';
+import $ from 'jquery'; 
 
+window.agenda = [];
+
+// The agenda displays the events selected by the user
+
+function deleteAgendaItem(val) {
+    $("#delete" + val.data.parameter).remove();
+
+    var nameIndex = -1;
+    for (var agendaInd in window.agenda)
+    {
+      if (window.agenda[agendaInd].param === val.data.name)
+      {
+        nameIndex = agendaInd;
+        break;
+      }
+    }
+
+    if (nameIndex != -1)
+      window.agenda.splice(nameIndex, 1);
+
+    var mostRecentEventString = "No Events!";
+    var typeString = "";
+    if (window.agenda.length > 0)
+    {
+      mostRecentEventString = window.agenda[0].param;
+      typeString = window.agenda[0].types;
+    }
+
+    $('.EventPreview').html('<div> <h3>' + mostRecentEventString + '</h3> </div>');
+    $('.tabDescriptions').html('<div> <h3>' + typeString + '</h3> </div>');
+}
+
+
+function addToAgendaNonEvent(number, types, param)
+{
+  $('.DetailedDescriptionsHalfLeft').append('<button class = "buttonsblue" id = delete'+ number + '>'+ param + '</button>');
+  $('.tabDescriptions').html('<div> <h3>' + types+ '</h3> </div>');
+  $('.EventPreview').html('<div> <h3>' + param + '</h3> </div>');
+  $("#delete" + number).click({parameter: number, name: param}, deleteAgendaItem);
+}
+
+function addToAgenda(val) {
+  if ( $( "#delete" + val.data.number ).length ) { return; }
+  
+  addToAgendaNonEvent(val.data.number, val.data.types, val.data.param);
+
+  window.agenda.unshift({number: val.data.number, types: val.data.types, param: val.data.param});
+}
+
+// function to manage the events page
 export function EventsPage() {
   
-  var EventsList = getEventsList(-33.8943, 151.2330, 1000, 1000);
-  var business1 = EventsList[0]["name"];
+  // Repopulate agenda with state
+  for (var agendaInd in window.agenda)
+  {
+    const i = window.agenda.length - agendaInd - 1; // Go backwards
+    addToAgendaNonEvent(window.agenda[i].number, window.agenda[i].types, window.agenda[i].param);
+  }
 
-  // const [business1, setbusiness1] = useState(null);
-  // useEffect(() => {
-  //     fetch('https://murmuring-mesa-57812.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8943,151.2330&radius=1000&type=restaurant&keyword=attractions&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk&maxprice=1000')
-  //         .then(response => response.json())
-  //         .then(data => 
-  //         {
-  //           setbusiness1(data.results[0].geometry.location.lat)
-  //           console.log("data", data.results)
-  //         });
-  // }, []);
+  var EventsList = getEventsList(window.markerPos.lat, window.markerPos.lng, window.radiusRange, window.budgetRange);
+  $('.DetailedDescriptionsHalfRightBlue').html('');
+  for (var i = 0; i < EventsList.length; i++) {
+    var unique_id = i.toString();
+        $('.DetailedDescriptionsHalfRightBlue').append('<button class = "buttonsblue" id ='+ unique_id + '>' + EventsList[i]["name"] + '</button>');
+    
+    
+    var tagList = [];
+    for (var tagInd in EventsList[i]["types"]) {
+      tagList.push(" " + EventsList[i]["types"][tagInd].replace(/_/g, " ")); 
+    }
+    // cleans up the list of types returned from the google places api call associated with each event
+    
+    $("#" + unique_id).click({param:EventsList[i]["name"], number:unique_id, types: tagList },addToAgenda)
+ 
+  }
+
+  var mostRecentEventString = "No Events!";
+  // variable keeping track of the most recently added event to agenda - used for routing
+  var typeString = "";
+  if (window.agenda.length > 0)
+  {
+    mostRecentEventString = window.agenda[0].param;
+    typeString = window.agenda[0].types;
+  }
 
   return (
-    <main>
+    <main id = "eventsPage">
       <div className="tabDescriptions">
-        Sydney Tower Eye is the tallest building in Sydney. It has a 360-degree view of the city.
+        <h3>
+          {typeString}
+        </h3>
       </div>
 
       <div className="EventPreview">
         <h3>
-          Sydney Tower Eye 10min
+          {mostRecentEventString}
         </h3>
       </div>
 
-      <div className="DetailedDescriptionsHalfLeft">
-        agenda planner will be here 
-        {business1} asfasfa
-
+      <div className="DetailedDescriptionsHalfLeft" style={{flexDirection: "column", overflowY: "scroll"}}>
+        
       </div>
-      <div className="DetailedDescriptionsHalfRightBlue">
-        Put the events generated in here
+
+      <div className="DetailedDescriptionsHalfRightBlue" style={{overflowY: "scroll"}}>
+      <div></div>
       </div>
     </main>
+            
   );
 }
-
 // returns list of events
 // events stored as dicts in format:
-// { "lat": 0, "lng" : 0, "icon": gstatic.xyz, "name": Maccas, "price_level"= 1}
-
-
+// { "lat": 0, 
+//   "lng" : 0, 
+//   "icon": gstatic.xyz, 
+//   "name": "Maccas", 
+//   "price_level"= 1, 
+//   types: ["point_of_interest", "restaurant"] }
 
 function getEventsList(lat, lng, radius, maxprice) {
 //google places api
 
   const API_KEY = "AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk";
-  const KEYWORD = "attractions";
-  const BASE_URL = "https://murmuring-mesa-57812.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+  const TYPE = "point_of_interest";
+  // use point_of_interest as the event to fiter events
+  const BASE_URL = "https://murmuring-mesa-57812.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
+  // murmuring-mesa used for CORS proxying
 
-  var apiUrl = BASE_URL + "key=" + API_KEY + "&radius=" + radius + "&location=" + lat + "," + lng + "&keyword=" + KEYWORD + "&maxprice=" + maxprice;
-  //console.log("XXXXXXXXX", apiUrl);
+  var apiUrl = BASE_URL + "key=" + API_KEY + "&radius=" + radius + "&location=" + lat + "," + lng + "&type=" + TYPE + "&maxprice=" + maxprice;
 
-  const [unfilteredEventsList, setUnfilteredEventsList] = useState(null);
+  const [unfilteredEventsList, setUnfilteredEventsList] = useState([]);
   useEffect(() => {
       // GET request using fetch inside useEffect React hook
-      fetch("https://murmuring-mesa-57812.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8943,151.2330&radius=1000&type=restaurant&keyword=attractions&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk&maxprice=1000")
+      fetch(apiUrl)
           .then(response => response.json())
-          .then(data => 
-            setUnfilteredEventsList(data.results)
-          });
-  // empty dependency array means this effect will only run once (like componentDidMount in classes)
+          .then(data => setUnfilteredEventsList(data.results));
+          // fulfill the promise!
   }, []);
+  console.log(unfilteredEventsList);
 
   var filteredEventsList = [];
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA", unfilteredEventsList);
 
   for (var i = 0; i < unfilteredEventsList.length; i++) {
       var d = {};
       d["name"] = unfilteredEventsList[i].name;
-      console.log(d["name"]);
       d["icon"] = unfilteredEventsList[i].icon;
       d["price_level"] = unfilteredEventsList[i].price_level;
-      d["lat"] = unfilteredEventsList[i].location.geometry.lat;
-      d["lng"] = unfilteredEventsList[i].location.geometry.lng;
+      d["lat"] = unfilteredEventsList[i].geometry.location.lat;
+      d["lng"] = unfilteredEventsList[i].geometry.location.lng;
+      d["types"] = unfilteredEventsList[i].types;
 
       filteredEventsList.push(d);
   }
 
   return filteredEventsList;
-  
-// https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=300&type=restaurant&keyword=cruise&key=AIzaSyCZcwH-NnFyNQfcwmvo7pMJR0whYgB3vqk
+
 }
 

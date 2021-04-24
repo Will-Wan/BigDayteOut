@@ -6,6 +6,13 @@
 input:focus {
     outline:none;
 }
+p {
+  margin-top: 1vh ;
+  margin-bottom: 1vh ;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens:auto;
+} 
 body {
   font-size: 1.6vw;
 }
@@ -298,6 +305,27 @@ body {
   font-size: 1.6vw;
 }
 
+.DetailedDescriptionsHalfLeftEvents {
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 77vh;
+  width: 48vw;
+  margin-top: 12vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow-y: scroll;
+  overflow-x: scroll;
+  color: white;
+  font-size: 1.6vw;
+}
+
 .DetailedDescriptionsHalfLeft {
 
   justify-content: center;
@@ -322,13 +350,17 @@ body {
 
   justify-content: top;
   align-items: center;
-  display: flex;
   background: rgba(74,128,245,1);
   position: absolute;
   border-radius: 10px;
   height: 77vh;
   width: 30vw;
-  word-wrap: break-word;
+  max-width: 30vw;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens:auto;
+  line-height: 1.7vw;
+  padding:2%;
   margin-top: 12vh;
   margin-left: 1vw;
   margin-right: 1vw;
@@ -345,6 +377,7 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
+  flex-direction: column;
   background: rgba(74,128,245,1);
   position: absolute;
   border-radius: 10px;
@@ -653,6 +686,18 @@ main {
   color: white;
   font-weight: bolder;
   width: auto;
-
 }
-
+.buttonsblue{
+  background-color: rgba(243,247,255,1);/*rgba(74,128,245,1); /* Green */
+  margin-bottom: 1vh;
+  border-radius: 10px;
+  width:40vh;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.6vw;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  float: left;
+}

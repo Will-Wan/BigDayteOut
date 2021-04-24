@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react
 import './App.css';
 import React from 'react';
 import { render } from "react-dom";
-
+//Landing function
 export function LandingPage() {
   return (
     <main>
@@ -15,7 +15,7 @@ export function LandingPage() {
           Ready to start
           planning your
           Big Dayte Out?
-
+              {/*link to registration page */}
           <Link to="/register">
             <div className="register">
             REGISTER
@@ -26,7 +26,7 @@ export function LandingPage() {
           <div style={{marginBottom:'8vh'}}>
           Welcome back!
           </div>
-
+              {/*input for username and password */}
           <div className="entryBox">
             <input
               type="text" placeholder="Email@Email.com" style={{height: "40vh",width:"100vh",fontSize: "1.6vw",color: "rgba(128,128,128,1)",fontWeight: "Bold",border:"none"}}
@@ -38,13 +38,13 @@ export function LandingPage() {
               type="text" placeholder="Password" style={{height: "40vh",width:"100vh",fontSize: "1.6vw",color: "rgba(128,128,128,1)",fontWeight: "Bold",border:"none"}}
             />
           </div>
-
+            {/*links to main page if login successful */}
           <Link to="/map/weather">
             <div className="login">
               LOGIN
             </div>
           </Link>
-
+                {/*input to reset password if fails*/}
           <Link to="/resetpass">
             <div className="forgotPass">
               Forgot password
@@ -55,16 +55,17 @@ export function LandingPage() {
     </main>
   );
 }
-
+    {/*registration page */}
 export function RegisterPage() {
   return (
     <main>
       <div className="box">
         <div className="box2">
-          <div style={{marginBottom:'8vh'}}>
+         {/* Create account*/}
+          <div style={{marginBottom:'8vh'}}>  
           Create Account!
           </div>
-
+               {/*login input */} 
           <div className="entryBox">
             <input
               type="text" placeholder="Email@Email.com" style={{height: "40vh",width:"100vh",fontSize: "1.6vw",color: "rgba(128,128,128,1)",fontWeight: "Bold",border:"none"}}
@@ -82,6 +83,7 @@ export function RegisterPage() {
               type="text" placeholder="Password" style={{height: "40vh",width:"100vh",fontSize: "1.6vw",color: "rgba(128,128,128,1)",fontWeight: "Bold",border:"none"}}
             />
           </div>
+            {/*link to registration page */}
 
           <Link to="/">
             <div className="login">
@@ -109,6 +111,7 @@ export function RegisterPage() {
     </main>
   );
 }
+    {/*reset password page */}
 
 export function ResetPass() {
   
@@ -137,6 +140,7 @@ export function ResetPass() {
               type="text" placeholder="Password" style={{height: "40vh",width:"100vh",fontSize: "1.6vw",color: "rgba(128,128,128,1)",fontWeight: "Bold",border:"none"}}
             />
           </div>
+            {/*links to registration page */}
 
           <Link to="/">
             <div className="login">

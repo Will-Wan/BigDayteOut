@@ -1,3 +1,4 @@
+//css style imports
 import './App.css';
 import './map.css'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
@@ -10,12 +11,15 @@ import { EventsPage } from './Events';
 import { SettingsPage } from './Settings';
 import { Icon } from '@iconify/react'
 import locationIcon from '@iconify/icons-mdi/map-marker'
+import { compose, withStateHandlers, lifecycle } from 'recompose';
+
 
 const defaultMapProps = { 
-      center: {   //centennial park
+      center: {   //Default centre
         lat: -33.8943,
         lng: 151.2330
       },
+      //default zoom
       zoom: 13.5,
       zoomControl: false
   };
@@ -31,31 +35,50 @@ function GetStyleForID(id, gid) {
   return unselectedColour;
 }
 
-const MapComponent = withScriptjs(withGoogleMap((props) =>
-  <GoogleMap
-    defaultZoom={defaultMapProps.zoom}
-    defaultCenter={defaultMapProps.center}
-    zoomControl={defaultMapProps.zoomControl}
+window.markerPos = defaultMapProps.center;
+//Map constant
+const TheMap = compose(
+    withStateHandlers(() => ({
+        isMarkerShown: true,
+        markerPosition: window.markerPos
+      }), {
+        onMapClick: ({ isMarkerShown }) => (e) => ({
+            markerPosition: e.latLng,
+            isMarkerShown: true
+        })
+      }),
+      lifecycle({
+        componentDidUpdate(prevProps) {
+          if (prevProps.markerPosition === this.props.markerPosition) { return; }
 
-    disableDefaultUI={true}
-    mapTypeControl={true}
-    defaultOptions={{disableDefaultUI: true, mapTypeControl: true}}
-  >
-    {props.isMarkerShown && <Marker position={{ lat: -33.8943, lng: 151.2330 }} />}
-  </GoogleMap>
-))
+          window.markerPos = {
+            lat: this.props.markerPosition.lat(),
+            lng: this.props.markerPosition.lng()
+          }          
+        }
+      }),
+      withScriptjs,
+      withGoogleMap
+)
+    (props =>
+        <GoogleMap
+            defaultZoom={15}
+            defaultCenter={{ lat: -33.8943, lng: 151.2330 }}
+            onClick={props.onMapClick}
+        >
+            {props.isMarkerShown && <Marker position={props.markerPosition} />}
+            {/* Enables dynamic map marking on user click, linked to weather, events and transport generation */}
+        </GoogleMap>
+    )
 
 export function Map() {
   const location = useLocation(); 
-
   const [pageID, setPageID] = useState(
     0 // Default, weather
     + (location.pathname == "/map/transport") * 1
     + (location.pathname == "/map/events") * 2
     + (location.pathname == "/map/filter") * 3
   );
-
-
 
   const unselectedColour = {};
   const selectedColour = {background: "white"};
@@ -73,23 +96,18 @@ export function Map() {
     </div>
   )
 
-
-  /*var weatherColour = GetStyleForID(0, pageID);
-  var transportColour = GetStyleForID(1, pageID);
-  var eventsColour = GetStyleForID(2, pageID);
-  var settingsColour = GetStyleForID(3, pageID);*/
-
   return (
     <Router>
       <div className="mapContainer" >
-        <MapComponent
-  isMarkerShown
-  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKAb78UDIOoadxVvXW9oE7RNNAnJS8Du4&v=3.exp&libraries=geometry,drawing,places"
-  loadingElement={<div style={{ height: `100%`, width: `100vw`}} />}
-  containerElement={<div style={{ height: `89vh`, width: `100vw` }} />}
-  mapElement={<div style={{ height: `89vh`, width: `100vw` }} />}
-  />
+        {/* Uses google map API to display map */}
+        <TheMap
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKAb78UDIOoadxVvXW9oE7RNNAnJS8Du4&v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: `100%`, width: `100vw`}} />}
+            containerElement={<div style={{ height: `89vh`, width: `100vw` }} />}
+            mapElement={<div style={{ height: `89vh`, width: `100vw` }} />}
+        />
       </div>
+      {/* Enables routing between different pages on button click */}
       <div className="belowMap">
         <Link to="/map/weather" onClick={() => {setPageID(0)}}>
           <div className="tabLeft" style={weatherColour}>
@@ -125,7 +143,7 @@ export function Map() {
               <WeatherPage />
             </Route> 
             <Route path="/map/events">
-              <EventsPage />
+              <EventsPage/>
             </Route> 
             <Route path="/map/filter">
               <SettingsPage />
