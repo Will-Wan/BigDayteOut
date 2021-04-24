@@ -1,4 +1,4 @@
-Website hosted on https://bigdayteout.williawwan.repl.co/map/weather
+Website hosted on https://bigdayteout.williawwan.repl.co/
 
 
 Big Dayte Out! 
