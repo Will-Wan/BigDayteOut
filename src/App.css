@@ -535,43 +535,61 @@ main {
   font-size: 4.5vw;
 }
 
-.TimeStartCoverTEMP {
+.myEvent {
 
-  justify-content: left;
-  align-items: top;
+  justify-content: center;
+  align-items: center;
   display: flex;
-  background: rgba(249,249,250,1);
+  background: rgba(74,128,245,1);
   position: absolute;
   border-radius: 10px;
-  height: 7vh;
-  width: 8vw;
-  margin-top: -25vh;
-  margin-left: -38vw;
+  height: 10vh;
+  width: 45.5vw;
+  margin-top: 12vh;
+  margin-left: 1vw;
   margin-right: 1vw;
   margin-bottom: 12vh;
   overflow: hidden;
-  color: black;
+  color: white;
+  font-size: 1.6vw;
+}
+
+.myEventDes {
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: rgba(74,128,245,1);
+  position: absolute;
+  border-radius: 10px;
+  height: 5vh;
+  width: 45.5vw;
+  margin-top: 83vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 12vh;
+  overflow: hidden;
+  color: white;
   font-size: 1vw;
 }
 
+.generatedEvents {
 
-.TimeStartCoverTEMP2 {
-
-  justify-content: left;
-  align-items: top;
+  justify-content: center;
+  align-items: center;
   display: flex;
-  background: rgba(249,249,250,1);
+  background: rgba(74,128,245,1);
   position: absolute;
   border-radius: 10px;
-  height: 7vh;
-  width: 8vw;
-  margin-top: 33vh;
-  margin-left: -38vw;
+  height: 10vh;
+  width: 45.5vw;
+  margin-top: 12vh;
+  margin-left: 50vw;
   margin-right: 1vw;
- 
+  margin-bottom: 12vh;
   overflow: hidden;
-  color: black;
-  font-size: 1vw;
+  color: white;
+  font-size: 1.6vw;
 }
 
 .eventContainer {

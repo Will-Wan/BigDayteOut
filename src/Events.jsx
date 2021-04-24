@@ -101,19 +101,36 @@ export function EventsPage() {
           {mostRecentEventString}
         </h3>
       </div>
-
+      
       <div className="DetailedDescriptionsHalfLeft" style={{flexDirection: "column", overflowY: "scroll"}}>
-        
       </div>
 
-      <div className="DetailedDescriptionsHalfRightBlue" style={{overflowY: "scroll"}}>
-      <div></div>
+      <div className="myEvent">
+        <h1>
+          Your events for the day!
+        </h1>
       </div>
+      <div className="myEventDes">
+          The bottom event is the most recent event.
+          Click on an event to remove it from your agenda.
+      </div>
+      <div className="DetailedDescriptionsHalfRightBlue" style={{overflowY: "scroll"}}>
+        <div>
+        </div>
+      </div>  
+
+      <div className="generatedEvents">
+        <h3>
+          Click on an event to add it to your agenda!
+        </h3>
+      </div>
+
+
     </main>
             
   );
 }
-// returns list of events
+// returns list of events 
 // events stored as dicts in format:
 // { "lat": 0, 
 //   "lng" : 0, 

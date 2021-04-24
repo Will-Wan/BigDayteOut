@@ -39,7 +39,7 @@ export function SettingsPage() {
       <div className="settingDescription"
           style={{height: "37vh", display: "flex", justifyContent: "space-between", padding: "1%"}}>
           
-        {/Radius jsx, ranges from 50-5000/}
+        {/*Radius jsx, ranges from 50-5000*/}
         <div className="settingEntry">
           Radius (m)
           <div style={{width: "80vw"}}>
@@ -53,7 +53,7 @@ export function SettingsPage() {
           </div>
         </div>
 
-        {/Budget level jsx, ranges from 1-4/}
+        {/*Budget level jsx, ranges from 1-4*/}
         <div className="settingEntry">
           Budget Level: 
           <div style={{width: "80vw"}}>
@@ -71,7 +71,7 @@ export function SettingsPage() {
         <div>
         Share your event plan:&nbsp;
 
-      {/insert logos for social medias & uber/}
+      {/*insert logos for social medias & uber*/}
 
         <img 
           src={`https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png`} style={{width: "2vw"}}
