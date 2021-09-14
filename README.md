@@ -6,7 +6,7 @@ A personalised adventure planner
 
 Group: Mon then
 Group members:
-z5311691 William Wan 
+ William Wan 
 z5308261 Lachlan Sutton
 z5311721 Sohum Jain 
 z5309071 Raghav Lall
